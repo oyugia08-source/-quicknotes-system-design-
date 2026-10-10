@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f3f6f2">
+  <title>QuickNotes</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="api.js" defer></script>
+</head>
+<body>
+  <main class="notes-app">
+    <header class="page-header">
+      <div>
+        <p class="eyebrow">QUICKNOTES / YOUR SPACE</p>
+        <h1>Notes for what matters.</h1>
+      </div>
+      <button id="load-btn" class="button button-primary" type="button">Load notes</button>
+    </header>
+
+    <p id="status" class="status" role="status" aria-live="polite" aria-atomic="true">Ready when you are.</p>
+
+    <section class="note-composer" aria-labelledby="composer-heading">
+      <div class="section-heading">
+        <p class="eyebrow">CAPTURE A THOUGHT</p>
+        <h2 id="composer-heading">Write a note</h2>
+      </div>
+      <form id="note-form">
+        <div class="form-field">
+          <label for="title-input">Title</label>
+          <input id="title-input" name="title" type="text" maxlength="100" required placeholder="Give it a clear title">
+        </div>
+        <div class="form-field">
+          <label for="body-input">Note</label>
+          <textarea id="body-input" name="body" rows="4" placeholder="Add a few details, or leave this blank"></textarea>
+        </div>
+        <div class="form-actions">
+          <span class="form-hint">Titles can be up to 100 characters.</span>
+          <button id="submit-btn" class="button button-primary" type="submit">Create note</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="notes-section" aria-labelledby="notes-heading">
+      <div class="list-heading">
+        <div>
+          <p class="eyebrow">YOUR COLLECTION</p>
+          <h2 id="notes-heading">Recent notes</h2>
+        </div>
+        <span class="list-caption">Latest first</span>
+      </div>
+      <ul id="notes-list" aria-labelledby="notes-heading"></ul>
+    </section>
+  </main>
+</body>
+</html>
