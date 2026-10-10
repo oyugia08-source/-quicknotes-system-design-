@@ -42,11 +42,22 @@ function renderNotes(list) {
     const title = document.createElement("h3");
     title.textContent = note.title;
 
+    const deleteButton = document.createElement("button");
+    deleteButton.className = "button button-delete";
+    deleteButton.type = "button";
+    deleteButton.textContent = "Delete";
+    deleteButton.setAttribute("aria-label", "Delete note");
+    deleteButton.addEventListener("click", () => deleteNote(note, deleteButton));
+
+    const heading = document.createElement("div");
+    heading.className = "note-heading";
+    heading.append(title, deleteButton);
+
     const body = document.createElement("p");
     body.className = "note-body";
     body.textContent = note.body;
 
-    item.append(title, body);
+    item.append(heading, body);
     noteList.append(item);
   });
 }
@@ -107,6 +118,25 @@ async function createNote(event) {
     setStatus("We couldn't create your note. Please try again.", "status-error");
   } finally {
     submitButton.disabled = false;
+  }
+}
+
+async function deleteNote(note, deleteButton) {
+  deleteButton.disabled = true;
+  setStatus("Deleting note...", "status-loading");
+
+  try {
+    const result = await request(`${API_URL}/${encodeURIComponent(note.id)}`, {
+      method: "DELETE"
+    });
+
+    // JSONPlaceholder acknowledges writes but does not persist them across reloads; remove only from this session's list.
+    notes = notes.filter((item) => item.id !== note.id);
+    renderNotes(notes);
+    setStatus(`Note deleted (status ${result.status}).`, "status-success");
+  } catch (error) {
+    deleteButton.disabled = false;
+    setStatus("We couldn't delete your note. Please try again.", "status-error");
   }
 }
 

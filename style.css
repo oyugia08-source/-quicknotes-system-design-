@@ -114,6 +114,20 @@ h2 {
   background: var(--accent-hover);
 }
 
+.button-delete {
+  min-height: 34px;
+  padding: 0 10px;
+  border-color: var(--border);
+  background: transparent;
+  color: var(--error);
+  font-size: 0.82rem;
+}
+
+.button-delete:hover:not(:disabled) {
+  border-color: var(--error);
+  background: var(--error-bg);
+}
+
 .status {
   min-height: 44px;
   margin: 0 0 26px;
@@ -229,6 +243,17 @@ textarea::placeholder {
   margin-bottom: 8px;
   font-size: 1rem;
   overflow-wrap: anywhere;
+}
+
+.note-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.note-heading h3 {
+  min-width: 0;
 }
 
 .note-body {
