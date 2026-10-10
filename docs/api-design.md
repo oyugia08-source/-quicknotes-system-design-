@@ -1,6 +1,7 @@
 # QuickNotes REST API
 
-Base URL: `https://api.quicknotes.example/v1`  
+Base URL: `https://api.quicknotes.example/v1`
+
 Authentication: send a bearer access token in `Authorization: Bearer <token>` for all user-specific routes. The API returns JSON unless the status is `204 No Content`.
 
 ## Endpoints
